@@ -1,0 +1,135 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+:root {
+    --titleStyle: none;
+    --hoverOp: 0;
+}
+
+body {
+    width: 100vw;
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom right, #ff52ff, #24ffff);
+    padding: 30px;
+}
+
+main {
+    padding: 50px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;    
+    align-items: space-between;
+    border-radius: 10px;
+    box-shadow: 5px 10px 15px rgba(0,0,0,0.2);
+    max-width: 500px;
+    width: fit-content;
+    position: relative;
+    min-height: 300px;
+}
+
+main .main_title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+main .list {
+    list-style: none;
+    width: 100%;
+}
+
+main .list li {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 15px 0;
+}
+
+main .list li:hover {
+    --hoverOp: 1;
+}
+
+main .list li .title {
+    text-decoration: var(--titleStyle);
+    font-size: 1.2rem;
+}
+
+main .list li input[type='checkbox'] {
+    margin-left: 20px;
+    margin-right: 7px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+main .list li div {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+main .list li div .sym {
+    transition: all 500ms;
+    opacity: var(--hoverOp);
+    width: 10px;
+    height: 10px;
+    transform: scale(1.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    width: fit-content;
+    cursor: pointer;
+}
+
+.completed {
+    --titleStyle: line-through;
+}   
+
+main form {
+    width: 100%;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+main form input[type="text"]{
+    border: none;
+    outline: none;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+main form input[type="text"]::placeholder {
+    text-align: center;
+}
+
+main form button {
+    position: absolute; 
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    background-color: #fff;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+main form button i {
+    font-size: 3rem;
+    color: #9933FF;
+}
