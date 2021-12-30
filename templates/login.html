@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %} login{% endblock %}
+{% block content %}
+<main class="main">
+    <h1>Login</h1>
+    <form name='login_form' onsubmit="login(event)" class="login_and_signup_form login_form">
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email">
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password">
+        <button type="submit">Log me in!!</button>
+    </form>
+    <a class="redi" href="/signup">Don't have an account</a>
+</main>
+{% endblock %}

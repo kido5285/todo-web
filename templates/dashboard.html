@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% block title %} dashboard {% endblock %}
+{% block content %}
+<button class="logout" onclick="logout(event)">log out</button>
+<main class="dashboard_main">
+    <h2 class="main_title">Todo list</h2>
+    <div>
+        <ul class="list">
+        </ul>
+    </div>
+    <form action='/' class="additem_form">
+        <input type="text" name="addtask" id="addtask" placeholder="Add task..." required>
+        <button type="submit"><i class="fas fa-plus-circle"></i></button>
+    </form>
+</main>
+<script>
+function checkelem(e) {
+    let parent = e.target.parentElement.parentElement;
+    let text = parent.querySelector('.title').textContent;
+    if(parent.classList.contains('completed')){
+        //uncomplete item
+        let respObj = {
+            'descrip': text,
+            'status': 'completed'
+        }
+        $.ajax({
+            type: 'post',
+            url: '/user/uncompleteitem',
+            data: $.param(respObj),
+            success: (res) => console.log(res),
+            error: (res) => console.log(res)
+        })
+        parent.classList.remove('completed');
+    } else {
+        //complete item
+        let respObj = {
+            'descrip': text,
+            'status': 'uncompleted'
+        }
+        $.ajax({
+            type: 'post',
+            url: '/user/completeitem',
+            data: $.param(respObj),
+            success: (res) => console.log(res),
+            error: (res) => console.log(res)
+        })
+        parent.classList.add('completed');
+    }
+}
+
+function crosselem(e) {
+    let parent = e.target.parentElement.parentElement;
+    let text = parent.querySelector('.title').textContent;
+    let list = document.querySelector('.list');
+    if(parent.classList.contains('completed')){
+        //delete completed item
+        let respObj = {
+            'descrip': text,
+            'status': 'completed'
+        }
+        $.ajax({
+            type: 'post',
+            url: '/user/deleteitem',
+            data: $.param(respObj),
+            success: (res) => console.log(res),
+            error: (res) => console.log(res)
+        })
+        parent.style.display = 'none';
+    } else {
+        //delete active item
+        let respObj = {
+            'descrip': text,
+            'status': 'uncompleted'
+        }
+        $.ajax({
+            type: 'post',
+            url: '/user/deleteitem',
+            data: $.param(respObj),
+            success: (res) => console.log(res),
+            error: (res) => console.log(res)
+        })
+        parent.style.display = 'none';
+    }
+}
+
+    let completed = '{{ completed }}';
+    completed = completed.split('&#39;');
+    let uncompleted = '{{ uncompleted }}';
+    uncompleted = uncompleted.split('&#39;');
+    for(let i=0; i < uncompleted.length; i++){
+        if(uncompleted[i] === '[' || uncompleted[i] === ']' || !uncompleted[i].trim() || uncompleted[i] === '' || uncompleted[i] === ', '|| uncompleted[i] === '[]'){
+            uncompleted.splice(i, 1);
+        }
+    }
+    for(let i=0; i < completed.length; i++){
+        if(completed[i] === '[' || completed[i] === ']' || !completed[i].trim() || completed[i] === '' || completed[i] === ', ' || completed[i] === '[]'){
+            completed.splice(i, 1);
+        }
+    }
+    let list = document.querySelector('.list')
+    if(uncompleted.length === 0 && completed.length === 0){
+        list.innerHTML = '<p>No todos:(</p>'
+    }
+    uncompleted.forEach(elem => {
+        let html = `
+<li class="item">
+    <span class="title">${elem}</span>
+    <div>
+        <input type="checkbox" onchange="checkelem(event)" class="checkbox real">
+        <div class="sym" onclick="crosselem(event)">&times;</div>
+    </div>
+</li>
+`
+        list.innerHTML += html
+    })
+    completed.forEach(elem => {
+        let html = `
+<li class="item completed">
+    <span class="title">${elem}</span>
+    <div>
+        <input type="checkbox" onchange="checkelem(event)" class="checkbox real" checked>
+        <div class="sym" onclick="crosselem(event)">&times;</div>
+    </div>
+</li>
+`
+        list.innerHTML += html
+    })
+</script>
+{% endblock %}

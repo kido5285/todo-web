@@ -1,0 +1,238 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+:root {
+    --titleStyle: none;
+    --hoverOp: 0;
+}
+
+body {
+    width: 100vw;
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom right, #ff52ff, #24ffff);
+    padding: 30px;
+}
+
+.dashboard_main {
+    padding: 50px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;    
+    align-items: space-between;
+    border-radius: 10px;
+    box-shadow: 5px 10px 15px rgba(0,0,0,0.2);
+    max-width: 500px;
+    width: fit-content;
+    position: relative;
+    min-height: 300px;
+}
+
+@media (max-width: 400px) {
+    .dashboard_main {
+        min-width: none!important;
+        width: 80vw!important;
+    }
+}
+
+.dashboard_main .main_title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.dashboard_main .list {
+    list-style: none;
+    width: 100%;
+}
+
+.dashboard_main .list li {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 15px 0;
+}
+
+.dashboard_main .list li:hover {
+    --hoverOp: 1;
+}
+
+.dashboard_main .list li .title {
+    text-decoration: var(--titleStyle);
+    font-size: 1.2rem;
+}
+
+.dashboard_main .list li input[type='checkbox'] {
+    margin-left: 20px;
+    margin-right: 7px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.dashboard_main .list li div {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.dashboard_main .list li div .sym {
+    transition: all 500ms;
+    opacity: var(--hoverOp);
+    width: 10px;
+    height: 10px;
+    transform: scale(1.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    width: fit-content;
+    cursor: pointer;
+}
+
+.completed {
+    --titleStyle: line-through;
+}   
+
+.dashboard_main .additem_form {
+    width: 100%;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.dashboard_main .additem_form input[type="text"]{
+    border: none;
+    outline: none;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+.dashboard_main .additem_form input[type="text"]::placeholder {
+    text-align: center;
+}
+
+.dashboard_main .additem_form button {
+    position: absolute; 
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    background-color: #fff;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.dashboard_main .additem_form button i {
+    font-size: 3rem;
+    color: #9933FF;
+}
+
+.main {
+    padding: 50px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    box-shadow: 5px 10px 15px rgba(0,0,0,0.2);
+    max-width: 500px;
+    width: fit-content;
+    position: relative;
+    min-height: 300px;
+}
+
+.login_and_signup_form {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.login_and_signup_form label {
+    margin-top: 5px;
+}
+
+.login_and_signup_form input {
+    width: 100%;
+    margin: 5px 0;
+    padding: 5px;
+    border: 1px solid rgba(0,0,0,0.7);
+    outline: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+}
+
+.login_and_signup_form button[type="submit"] {
+    cursor: pointer;
+    margin-top: 20px;
+    padding: 5px;
+    border: 2px solid rgba(0,0,0,1);
+    justify-self: center!important;
+    outline: none;
+    font-size: 1.1rem;
+    background-color: #fff;
+    font-weight: bold;
+    transition: all 500ms;
+}
+
+.login_and_signup_form button[type="submit"]:hover {
+    border: 2px solid #000;
+    background-color: #000;
+    color: #fff;
+}
+
+.err-mes {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #EC96A4;
+    background-color: #FB6542;
+    color: #fff;
+    font-size: 1.05rem;
+    margin: 10px 0;
+}
+
+.suc-mes {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #2C7873;
+    background-color: #6FB98F;
+    color: #fff;
+    font-size: 1.05rem;
+    margin: 10px 0;
+}
+
+.redi {
+    margin-top: 10px;
+}
+
+.logout {
+    padding: 7px;
+    border: 2px solid #000;
+    position: fixed;
+    font-size: 1rem;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    outline: none;
+    text-align: center;
+    transition: all 500ms;
+}
+
+.logout:hover {
+    transition: all 500ms;
+    text-decoration: underline;
+}
